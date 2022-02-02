@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:movie_app/controllers/login_controller.dart';
 
 class LoginPage extends StatelessWidget {
-  const LoginPage({Key? key}) : super(key: key);
+  LoginController _controller = LoginController();
+  LoginPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        padding: EdgeInsets.all(28),
+        padding: const EdgeInsets.all(28),
         // color: Color(0xFFFFFFFF),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -15,13 +17,14 @@ class LoginPage extends StatelessWidget {
           children: [
             Icon(
               Icons.people,
-              size: 98,
+              size: MediaQuery.of(context).size.height * .2,
             ),
             TextField(
               decoration: InputDecoration(
                 hintText: "example",
                 label: Text("Login"),
               ),
+              onChanged: _controller.setLogin,
             ),
             TextField(
               decoration: InputDecoration(
@@ -29,13 +32,29 @@ class LoginPage extends StatelessWidget {
                 label: Text("Password "),
               ),
               obscureText: true,
+              onChanged: _controller.setPass,
             ),
             SizedBox(
               height: MediaQuery.of(context).size.height / 25,
             ),
-            ElevatedButton(
-              onPressed: () {},
-              child: Text("Login"),
+            ValueListenableBuilder<bool>(
+              valueListenable: _controller.inLoader,
+              builder: (_, inLoader, __) => inLoader
+                  ? CircularProgressIndicator()
+                  : ElevatedButton(
+                      onPressed: () {
+                        _controller.auth().then(
+                          (result) {
+                            if (result) {
+                              print('sucess');
+                            } else {
+                              print('failed');
+                            }
+                          },
+                        );
+                      },
+                      child: Text("Login"),
+                    ),
             )
           ],
         ),
