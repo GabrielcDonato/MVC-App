@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie_app/pages/login_page.dart';
 import 'package:movie_app/pages/splash_page.dart';
 
 class MyApp extends StatelessWidget {
@@ -7,13 +8,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.green,
       ),
       initialRoute: '/splash',
       routes: {
         '/splash': (_) => const SplashPage(),
+        '/login': (_) => const LoginPage(),
       },
     );
   }
