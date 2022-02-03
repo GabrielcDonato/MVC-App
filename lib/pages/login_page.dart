@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:movie_app/controllers/login_controller.dart';
 
 import '../components/login/custom_login_button_component.dart';
+import '../widgets/custom_text_field_widget.dart';
 
 class LoginPage extends StatelessWidget {
   final LoginController _controller = LoginController();
@@ -23,20 +24,14 @@ class LoginPage extends StatelessWidget {
               size: MediaQuery.of(context).size.height * .2,
               color: Colors.blue,
             ),
-            TextField(
-              decoration: InputDecoration(
-                hintText: "example",
-                label: Text("Login"),
-              ),
+            CustomTextFieldWidget(
+              label: 'Login',
               onChanged: _controller.setLogin,
             ),
-            TextField(
-              decoration: InputDecoration(
-                hintText: "123",
-                label: Text("Password "),
-              ),
-              obscureText: true,
+            CustomTextFieldWidget(
+              label: 'Password',
               onChanged: _controller.setPass,
+              obscureText: true,
             ),
             SizedBox(
               height: MediaQuery.of(context).size.height / 25,
