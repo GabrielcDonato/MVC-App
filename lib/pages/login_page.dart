@@ -26,10 +26,12 @@ class LoginPage extends StatelessWidget {
             ),
             CustomTextFieldWidget(
               label: 'Login',
+              hintText: 'example@example.com',
               onChanged: _controller.setLogin,
             ),
             CustomTextFieldWidget(
               label: 'Password',
+              hintText: '123',
               onChanged: _controller.setPass,
               obscureText: true,
             ),
