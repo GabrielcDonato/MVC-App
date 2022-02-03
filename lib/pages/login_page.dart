@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:movie_app/controllers/login_controller.dart';
 
 class LoginPage extends StatelessWidget {
-  LoginController _controller = LoginController();
+  final LoginController _controller = LoginController();
+
   LoginPage({Key? key}) : super(key: key);
 
   @override
@@ -46,9 +47,17 @@ class LoginPage extends StatelessWidget {
                         _controller.auth().then(
                           (result) {
                             if (result) {
-                              print('sucess');
+                              Navigator.of(context)
+                                  .pushReplacementNamed('/home');
                             } else {
-                              print('failed');
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: const Text(
+                                    'Falha ao realizar login',
+                                  ),
+                                  duration: const Duration(seconds: 5),
+                                ),
+                              );
                             }
                           },
                         );
