@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:movie_app/pages/login_page.dart';
-import 'package:movie_app/pages/splash_page.dart';
+
+import 'pages/splash_page.dart';
+import 'pages/login_page.dart';
+import 'pages/home_page.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -17,6 +19,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/splash': (_) => const SplashPage(),
         '/login': (_) => LoginPage(),
+        '/home': (_) => HomePage(),
       },
     );
   }
