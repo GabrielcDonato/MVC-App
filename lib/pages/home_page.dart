@@ -24,9 +24,18 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.lightBlue,
-        title: const Center(
-          child: Text(
-            "Home",
+        title: Center(
+          child: Row(
+            children: [
+              Text(
+                "Home",
+              ),
+              Spacer(),
+              InkWell(
+                child: Icon(Icons.refresh),
+                onTap: () => _controller.fetch(),
+              )
+            ],
           ),
         ),
       ),
@@ -40,6 +49,9 @@ class _HomePageState extends State<HomePage> {
               leading: Text(list[idx].id.toString()),
               trailing: const Icon(Icons.arrow_forward),
               title: Text(list[idx].title),
+              // onTap: () => print(list[idx]),
+              onTap: () => Navigator.of(context)
+                  .pushNamed('/details', arguments: list[idx]),
             ),
             separatorBuilder: (_, __) => const Divider(),
           );
