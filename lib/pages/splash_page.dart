@@ -18,10 +18,10 @@ class _SplashPageState extends State<SplashPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.green.shade600,
+      color: Colors.lightBlue[600],
       child: Center(
         child: CircularProgressIndicator(
-          color: Colors.white54,
+          color: Colors.cyanAccent[100],
         ),
       ),
     );

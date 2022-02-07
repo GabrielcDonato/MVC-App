@@ -17,6 +17,7 @@ class CustomTextFieldWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
+      cursorColor: Colors.blue,
       decoration: InputDecoration(
         hintText: hintText,
         label: Text(label),

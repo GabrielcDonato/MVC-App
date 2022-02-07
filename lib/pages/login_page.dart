@@ -14,7 +14,9 @@ class LoginPage extends StatelessWidget {
     return Scaffold(
       body: Container(
         padding: const EdgeInsets.all(28),
-        color: Color(0xFFFFFFFF),
+        decoration: BoxDecoration(
+            gradient: LinearGradient(
+                colors: [Colors.white, Colors.lightBlue.shade300])),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
@@ -22,7 +24,7 @@ class LoginPage extends StatelessWidget {
             Icon(
               Icons.people,
               size: MediaQuery.of(context).size.height * .2,
-              color: Colors.blue,
+              color: Colors.lightBlue,
             ),
             CustomTextFieldWidget(
               label: 'Login',

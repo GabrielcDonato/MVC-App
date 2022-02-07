@@ -12,14 +12,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.green,
-      ),
+      theme: ThemeData(),
       initialRoute: '/splash',
       routes: {
         '/splash': (_) => const SplashPage(),
         '/login': (_) => LoginPage(),
-        '/home': (_) => HomePage(),
+        '/home': (_) => const HomePage(),
       },
     );
   }
