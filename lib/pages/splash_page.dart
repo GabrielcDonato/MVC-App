@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie_app/services/prefs_service.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({Key? key}) : super(key: key);
@@ -11,8 +12,18 @@ class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(Duration(seconds: 3))
-        .then((_) => Navigator.of(context).pushReplacementNamed('/login'));
+    Future.wait(
+      [
+        PrefsServices
+            .isAuth(), //primeiro index da lista por isso o 0 em value[0]
+        Future.delayed(const Duration(seconds: 3)),
+      ],
+    ).then((value) => value[0]
+        ? Navigator.of(context).pushReplacementNamed('/home')
+        : Navigator.of(context).pushReplacementNamed('/login'));
+
+    // Future.delayed(Duration(seconds: 3))
+    //     .then((_) => Navigator.of(context).pushReplacementNamed('/login'));
   }
 
   @override

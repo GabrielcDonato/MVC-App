@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:movie_app/services/prefs_service.dart';
 
 class LoginController {
   ValueNotifier<bool> inLoader = ValueNotifier<bool>(false);
@@ -13,6 +14,11 @@ class LoginController {
     inLoader.value = true;
     await Future.delayed(Duration(seconds: 2));
     inLoader.value = false;
-    return _login == "admin" && _pass == "123";
+    if (_login == "admin" && _pass == "123") {
+      PrefsServices.save(_login!);
+      return true;
+    }
+    return false;
   }
 }
+//A gente chama o PrefsServices que foi criado e passa a nossa variável de login como paremetro, assim salvando o usuario autenticado.

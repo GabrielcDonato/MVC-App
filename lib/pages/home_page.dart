@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:movie_app/controllers/home_controller.dart';
 import 'package:movie_app/models/post_model.dart';
 import 'package:movie_app/repositories/home_repository_impl.dart';
+import 'package:movie_app/services/prefs_service.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -24,20 +25,24 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.lightBlue,
-        title: Center(
-          child: Row(
-            children: [
-              Text(
-                "Home",
-              ),
-              Spacer(),
-              InkWell(
-                child: Icon(Icons.refresh),
-                onTap: () => _controller.fetch(),
-              )
-            ],
-          ),
+        title: const Text(
+          "Home",
         ),
+        actions: [
+          IconButton(
+            onPressed: () => _controller.fetch(),
+            icon: const Icon(Icons.refresh),
+          ),
+          IconButton(
+            onPressed: () {
+              PrefsServices.logout();
+              Navigator.of(context)
+                  .pushNamedAndRemoveUntil('/login', (_) => true);
+              // .pushNamedAndRemoveUntil('/login', (route) => true);
+            },
+            icon: const Icon(Icons.logout),
+          ),
+        ],
       ),
       body: ValueListenableBuilder<List<PostModel>>(
         valueListenable: _controller.posts,
